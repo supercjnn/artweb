@@ -1,161 +1,69 @@
-# 西方艺术史学习网站
+# React + TypeScript + Vite
 
-## 项目简介
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-这是一个专注于西方艺术史教育的交互式学习平台，旨在帮助用户深入了解从古典时期到现代艺术的发展历程。网站提供丰富的艺术史内容、著名艺术家介绍、经典作品欣赏以及互动学习功能。
+Currently, two official plugins are available:
 
-## 功能特色
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### 📖 内容模块
-- **艺术时期导览**: 详细介绍各个艺术史时期的特点和代表作品
-- **艺术家档案**: 著名艺术家的生平介绍、作品集和艺术风格分析  
-- **作品画廊**: 高质量的艺术作品展示，包含详细的作品信息
-- **互动时间线**: 直观展示艺术史发展脉络
+## Expanding the ESLint configuration
 
-### 🎯 学习功能
-- **在线测验**: 多难度级别的艺术史知识测试
-- **学习进度追踪**: 个性化的学习进度管理
-- **收藏系统**: 收藏感兴趣的艺术家和作品
-- **学习统计**: 详细的学习数据分析
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-### 🎨 用户体验
-- **响应式设计**: 完美适配桌面端、平板和手机
-- **优雅的界面**: 现代化的设计风格，专注于内容展示
-- **流畅的交互**: 精心设计的动画和过渡效果
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## 技术栈
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-### 前端技术
-- **React 18**: 现代化的用户界面框架
-- **TypeScript**: 类型安全的JavaScript超集
-- **Tailwind CSS**: 实用优先的CSS框架
-- **React Router**: 客户端路由管理
-- **Vite**: 快速的构建工具
-
-### 设计系统
-- **自定义主题**: 艺术史主题配色方案
-- **Google Fonts**: Playfair Display + Inter 字体组合
-- **响应式栅格**: 移动优先的设计方案
-
-## 项目结构
-
-```
-artweb-frontend/
-├── src/
-│   ├── components/          # 可复用组件
-│   │   ├── Navbar.tsx      # 导航栏组件
-│   │   └── Footer.tsx      # 页脚组件
-│   ├── pages/              # 页面组件
-│   │   ├── Home.tsx        # 首页
-│   │   ├── Periods.tsx     # 艺术时期页面
-│   │   ├── Artists.tsx     # 艺术家页面
-│   │   ├── Gallery.tsx     # 作品画廊
-│   │   └── LearnCenter.tsx # 学习中心
-│   ├── data/               # 数据文件
-│   │   └── artData.ts      # 艺术史数据
-│   ├── types/              # TypeScript 类型定义
-│   │   └── index.ts        # 通用类型
-│   └── App.tsx             # 主应用组件
-├── public/                 # 静态资源
-├── tailwind.config.js      # Tailwind 配置
-└── package.json           # 项目依赖
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-## 快速开始
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-### 环境要求
-- Node.js 16.0 或更高版本
-- npm 或 yarn 包管理器
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-### 安装步骤
-
-1. 克隆项目
-```bash
-git clone [repository-url]
-cd artweb
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-
-2. 进入前端目录并安装依赖
-```bash
-cd artweb-frontend
-npm install
-```
-
-3. 启动开发服务器
-```bash
-npm run dev
-```
-
-4. 打开浏览器访问 `http://localhost:5174`
-
-### 构建部署
-```bash
-npm run build
-npm run preview
-```
-
-## 页面介绍
-
-### 🏠 首页
-- 艺术史概览轮播
-- 时期快速导航
-- 精选艺术家展示
-- 学习中心入口
-
-### 🎭 艺术时期页面  
-- 时间线式的历史展示
-- 各时期特点和背景介绍
-- 代表性特征标签
-- 详细的历史描述
-
-### 👨‍🎨 艺术家页面
-- 艺术家生平介绍
-- 艺术风格分析
-- 代表作品列表
-- 历史影响评价
-
-### 🖼️ 作品画廊
-- 高质量作品图片
-- 详细作品信息
-- 技法和背景介绍
-- 收藏和分享功能
-
-### 🎯 学习中心
-- 多难度测验系统
-- 学习进度跟踪
-- 个人收藏管理
-- 学习统计分析
-
-## 后续开发计划
-
-### 功能扩展
-- [ ] 用户账户系统
-- [ ] 社区评论功能
-- [ ] 高级搜索和筛选
-- [ ] 3D虚拟展厅
-- [ ] 语音导览功能
-- [ ] 离线模式支持
-
-### 移动端
-- [ ] 微信小程序版本
-- [ ] 原生应用开发
-- [ ] AR艺术品识别
-- [ ] 位置服务集成
-
-### 内容增强
-- [ ] 更多艺术时期覆盖
-- [ ] 视频教程集成  
-- [ ] 专家访谈内容
-- [ ] 多语言支持
-
-## 贡献指南
-
-欢迎提交 Issue 和 Pull Request 来帮助改进这个项目！
-
-## 开源协议
-
-MIT License - 详情请查看 [LICENSE](LICENSE) 文件
-
-## 致谢
-
-感谢所有为西方艺术史教育做出贡献的学者、博物馆和艺术机构。本项目旨在促进艺术教育的普及，让更多人能够接触和理解艺术的美好。

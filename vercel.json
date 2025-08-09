@@ -1,25 +1,8 @@
 {
-  "name": "artweb-frontend",
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "artweb-frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-  ],
-  "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/artweb-frontend/dist/index.html"
-    }
-  ],
-  "buildCommand": "cd artweb-frontend && npm run build",
-  "outputDirectory": "artweb-frontend/dist",
-  "installCommand": "cd artweb-frontend && npm install"
+  ]
 }
