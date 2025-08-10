@@ -105,3 +105,4 @@ Desktop.ini
 # Vite
 .vite/
 vite.config.ts.timestamp-*
+.vercel

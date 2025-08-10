@@ -1,0 +1,17 @@
+name = "artweb"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "artweb"
+
+# Pages项目配置
+pages_build_output_dir = "dist"
+
+# 环境变量（如果需要的话）
+[env.production.vars]
+# NODE_ENV = "production"
+# API_BASE_URL = "https://api.artweb.com"
+
+# 自定义域名（可选）
+# [[env.production.routes]]
+# pattern = "artweb.your-domain.com/*"

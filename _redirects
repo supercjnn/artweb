@@ -1,0 +1,8 @@
+# SPA重定向规则 - 所有未找到的路径都重定向到index.html
+/*    /index.html   200
+
+# API路径（为未来的后端API预留）
+/api/*  https://api.artweb.example.com/:splat  200
+
+# 静态资源缓存规则
+/assets/*  /assets/:splat  200  Cache-Control: max-age=31536000,immutable
